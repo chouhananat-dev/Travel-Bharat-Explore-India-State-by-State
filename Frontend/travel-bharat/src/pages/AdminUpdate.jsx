@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { useParams, useState } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react';
 import axios from 'axios';
 import {  useNavigate} from 'react-router-dom';
 export const AdminUpdate = () => {

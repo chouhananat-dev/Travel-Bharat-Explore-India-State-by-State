@@ -25,12 +25,12 @@ function App() {
           <ViewPlacesByAdmin/>
         </ProtectedRoutes>
       }></Route>
-    </Routes>
     <Route path='/admin/update/:objectId' element={
       <ProtectedRoutes>
         <AdminUpdate/>
       </ProtectedRoutes>
     }></Route>
+    </Routes>
     </BrowserRouter>
   )
 }
