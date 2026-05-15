@@ -21,7 +21,53 @@ export const Card = () => {
     },[]);
 
     if(!loading){
-        return <div class='flex justify-center items-center h-96'><h1 class='text-2xl font-bold text-gray-700'>Loading...</h1></div>
+        return <div className='flex flex-row space-evenly gap-4  mt-4 pb-4 flex-wrap-reverse'>
+        <div class="mx-auto mt-4 w-full max-w-sm rounded-md border border-black p-4">
+  <div class="flex animate-pulse space-x-4">
+    <div class="size-20 rounded-full bg-gray-200"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 rounded bg-gray-200"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-2 h-2 rounded bg-gray-200"></div>
+          <div class="col-span-1 h-2 rounded bg-gray-200"></div>
+        </div>
+        <div class="h-2 rounded bg-gray-200"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mx-auto mt-4 w-full max-w-sm rounded-md border border-black p-4">
+  <div class="flex animate-pulse space-x-4">
+    <div class="size-20 rounded-full bg-gray-200"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 rounded bg-gray-200"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-2 h-2 rounded bg-gray-200"></div>
+          <div class="col-span-1 h-2 rounded bg-gray-200"></div>
+        </div>
+        <div class="h-2 rounded bg-gray-200"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mx-auto mt-4  w-full max-w-sm rounded-md border border-black p-4">
+  <div class="flex animate-pulse space-x-4">
+    <div class="size-20 rounded-full bg-gray-200"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 rounded bg-gray-200"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-2 h-2 rounded bg-gray-200"></div>
+          <div class="col-span-1 h-2 rounded bg-gray-200"></div>
+        </div>
+        <div class="h-2 rounded bg-gray-200"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
     }
     return (
         <div class='p-4 md:p-10 lg:p-20 h-[120vh] bg-cover bg-center flex items-center justify-center' style={{ backgroundImage: "url('https://res.cloudinary.com/degxzalkz/image/upload/v1775909241/photo-1690313186501-445a6367d7e7_hss5rp.jpg')" }}>
@@ -29,9 +75,9 @@ export const Card = () => {
             <h1 class='lg:text-[5rem] text-3xl md:text-[2.5rem] font-bold text-yellow-500 mb-6 mt-4'>Explore the states of India</h1>
             <div class='w-full h-auto overflow-x-scroll overflow-y-hidden flex gap-6 py-4'>
                 {data.data.map((state)=>(
-                        <div key={state._id} class='bg-white rounded-2xl shadow-md h-[60vh] w-96 md:w-[25rem] md:h-[75vh] flex-shrink-0 overflow-hidden relative'>
+                        <div key={state._id} class='bg-white rounded-2xl shadow-md h-[60vh] w-96 md:w-100 md:h-[75vh] shrink-0 overflow-hidden relative'>
                             <img src={state.image} alt={state.name} class='w-full h-[60vh] md:h-[75vh] object-cover rounded-2xl hover:scale-110 transition duration-300'/>
-                            <div class='p-2 backdrop-blur-sm bg-gray-100 bg-opacity-50 rounded-lg -mt-[20vh] mx-6'>
+                            <div class='p-2 backdrop-blur-sm bg-gray-100 bg-opacity-50 rounded-lg mt-[-20vh] mx-6'>
                                 <h2 class='text-xl font-bold text-gray-800 mb-2'>{state.name}</h2>
                                 <h1 class='text-gray-800'>{state.tagLine}</h1>
                                 <Link to='/states' state={state.name}>

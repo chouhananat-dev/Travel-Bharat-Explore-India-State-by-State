@@ -18,14 +18,14 @@ export const Home = () => {
       <div class='flex lg:flex-row '>
       <div class='mt-[17rem] ml-[-13rem] text-4xl font-bold text-white md:text-3xl gap-2 md:gap-4 lg:gap-6 lg:ml-[-40rem] lg:mt-[60rem] flex flex-col lg:mt-[15rem] md:ml-[-24rem] md:mt-[36rem] text-left'>
         <h1 class='text-3xl md:text-5xl'>Explore</h1>
-        <h1 class='md:text-5xl lg:text-[6rem] text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#FF9933] via-white to-[#138808]'>India</h1>
+        <h1 class='md:text-5xl lg:text-[6rem] text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#FF9933] via-white to-[#138808]'>India</h1>
         <h1 class='text-3xl md:text-5xl text-white'>state by state</h1>
       </div>
       </div>
       </div>
-      <div class='text-center rotate-[-90deg] z-50 fixed right-[-8.5rem] top-[30%]'>
+      <div class='text-center -rotate-90 z-50 fixed -right-34 top-[30%]'>
         <Link to='/states'>
-            <button onMouseEnter={()=>setsearch(true)} onMouseLeave={()=>setsearch(false)} class='mt-4 w-80 h-10 bg-gradient-to-r from-red-500 to-red-900 text-white text-2xl font-bold italic rounded-t-xl hover:scale-110 transition duration-300'>
+            <button onMouseEnter={()=>setsearch(true)} onMouseLeave={()=>setsearch(false)} class='mt-4 w-80 h-10 bg-linear-to-r from-red-500 to-red-900 text-white text-2xl font-bold italic rounded-t-xl hover:scale-110 transition duration-300'>
                 <div class='flex flex-row items-center justify-center transition duration-900'>
                 {search && (
                     <p>Search</p>
@@ -41,7 +41,7 @@ export const Home = () => {
       <Topplaces/>
       <Card/>
       
-      <div class='pt-12 pb-20 bg-gradient-to-r from-[#FF9933] to-[#138808]'>
+      <div class='pt-12 pb-20 bg-linear-to-r from-[#FF9933] to-[#138808]'>
         <h1 class='text-[5rem] mb-8 font-bold text-white text-center'>More Attractions</h1>
       <div class='h-[23rem] flex flex-col justify-center items-center bg-[url("https://res.cloudinary.com/degxzalkz/image/upload/v1775576053/1000_F_505512599_D6ulJI9hV6aGTP04FPC2XDk5QHGOQtpW_waps52.jpg")] bg-cover bg-center'>
         <h1 class='text-4xl font-bold text-white italic mb-4'>"India is incredible! Click here to explore more."</h1>

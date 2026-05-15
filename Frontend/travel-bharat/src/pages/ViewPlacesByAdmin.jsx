@@ -2,28 +2,28 @@ import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Logout } from '../components/Logout';
+import { Logout2 } from '../components/Loutout2';
 export const ViewPlacesByAdmin = () => {
     const [places, setplaces] = useState([]);
-    const [loading, setloading] = useState(false);
     const [placeId, setplaceId] = useState('');
     const AdminSearch = async(e) =>{
-        e.preventdDefault();
+        e.preventDefault();
         try{
             const response = await axios.get('http://localhost:5000/api/getStatesInfoByAdmin',{
                 params:{
                     statename:e.target.statename.value,
                     category:e.target.category.value
-                }
-            },{
+                },
                 headers:{
-                    Authorization:`Bearer ${localStorage.getItem('token')}`
+                    Authorization:`Bearer ${localStorage.getItem('jwt_token')}`
                 }
             });
+            console.log(response)
             setplaces(response.data);
-            setloading(true);
         }
         catch(err){
-            console.log(err);
+            console.log(err.message);
         }
     }
     const handleDelete = async(id)=>{
@@ -33,7 +33,7 @@ export const ViewPlacesByAdmin = () => {
             if (confirm){
                 const response = await axios.post('http://localhost:5000/api/deletePlace',{placeId},{
                 headers:{
-                    Authorization:`Bearer ${localStorage.getItem('token')}`
+                    Authorization:`Bearer ${localStorage.getItem('jwt_token')}`
                 }
             });
             console.log(response);
@@ -44,10 +44,24 @@ export const ViewPlacesByAdmin = () => {
         }
     }
   return (
-    <div id='AdminViewMainContainer'>
-        <div>
-            <form onSubmit={AdminSearch}> 
-          <select name='statename'>
+    <div id='AdminViewMainContainer' className='flex flex-row h-screen'>
+        <div className='h-screen w-1/3 md:w-1/4 bg-black fixed'>
+        <h1 className='text-4xl text-white font-semibold p-3 text-center'>Welcome Admin</h1>
+        <div className='mt-15 h-60 flex flex-col gap-8'>
+            <Link to='/admin/dashboard'><h1 className='text-white text-center hover:bg-gray-400 duration-200'>Dashboard</h1></Link>
+            <h1 className='text-center hover:bg-gray-400 duration-200'><Logout2/></h1>
+        </div>
+        </div>
+        <div className='w-2/3 md:w-3/4 ml-auto'>
+        <div className='p-2'>
+            <div className='flex flex-row items-center justify-between'>
+        <h1 class='md:text-5xl lg:text-[4rem] text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#FF9933] to-[#138808]'>Travel Bharat</h1>
+        <Logout/>   
+            </div>
+        <h1 className='text-xl md:text-2xl lg:text-3xl mt-3 mb-3 text-gray-500 font-semibold'>Search Places Here...</h1>
+        </div>
+            <form onSubmit={AdminSearch} className='flex flex-col justify-evenly bg-blue-400 h-35 pl-2 pr-2 md:pl-12 md:pr-12 lg:pl-30 lg:pr-30'> 
+          <select name='statename' className='rounded-xl bg-gray-800 text-white pl-2'>
               <option value=''>Choose States and Union Territories</option>
               <option value='Andhra Pradesh'>Andhra Pradesh</option>
               <option value='Arunachal Pradesh'>Arunachal Pradesh</option>
@@ -87,7 +101,7 @@ export const ViewPlacesByAdmin = () => {
               <option value='Lakshadweep'>Lakshadweep</option>
               <option value='Puducherry'>Puducherry</option>
           </select>
-          <select name='category'>
+          <select name='category' className='rounded-xl  bg-gray-800 text-white pl-2'>
             <option value=''>Choose Category</option>
             <option value='pilgrimage'>Pilgrimage</option>
             <option value='heritage'>Heritage</option>
@@ -96,32 +110,45 @@ export const ViewPlacesByAdmin = () => {
             <option value='nature'>Nature</option>
             <option value='monumental'>Monumental</option>
           </select>
-          <button type='submit'>
+          <button type='submit' className='w-20 border-3 ml-auto mr-auto border-r-amber-700 rounded-lg hover:scale-120 duration-200'>
             Search 
           </button>
         </form>
-        </div>
         <div id='SearchResultsContainer'>
-            {loading ? places.map((place,index)=>{
+            {places.map((place,index)=>{
                 return(
-                    <div key={index}>
-                        <h1>{place.name}</h1>
-                        <h2>{place.state}</h2>
-                        <h3>{place.category}</h3>
-                        <img alt='image' src={place.image}></img>
-                        {place.nearByAttractions.map((attraction,index)=>{
+                    <div key={index} className='flex flex-row p-2 md:p-3.5 lg:p-5 bg-gray-300 m-2 rounded-xl'>
+                        <div className='w-50 h-40 rounded-xl overflow-hidden md:w-70 md:h-60 lg:w-100 lg:h-90'>
+                            <img className='w-full h-full object-cover' alt='image' src={place.image}></img>
+                        </div>
+                        <div className='ml-5 md:ml-10 lg:ml-20 flex flex-col justify-between'>
+                        <h1 className='text-blue-400 text-xl font-semibold md:text-2xl lg:text-4xl'>Place: {place.name}</h1>
+                        <h2 className='text-xl italic'>State: {place.state}</h2>
+                        <h2 className='md:text-xl'>Category: {place.category}</h2>
+                        <h2 className='md:text-xl'>Best Time To Visit: {place.bestTimeToVisit}</h2>
+                        <h3 className='md:text-2xl text-xl text-blue-400'>Near By Attractions:</h3>
+        
+                        
+                        <ol className='list-decimal ml-5 mb-2'>
+                        {place.nearByAttractions.map((attraction,index2)=>{
                             return(
-                                <h2 key={index}>{attraction.place}</h2>
+                                <li key={index2}> {attraction.name}</li>
                             )
                         })}
-                        <button type='button' onClick={()=>{handleDelete(place._id)}}>Delete</button>
-                        <Link to={`/admin/update/${place._id}`}><button type='button'>Update</button></Link>
+                        </ol>
+                        <div>
+                        <button type='button' className='w-20 bg-red-600 border-2 text-white border-black rounded-lg hover:scale-112 duration-200' onClick={()=>{handleDelete(place._id)}}>Delete</button>
+                        <Link to={`/admin/update/${place._id}`}><button className='ml-5 w-20 bg-blue-500 border-2 text-white border-black rounded-lg hover:scale-112 duration-200' type='button'>Update</button></Link>
+                       </div>
+                    </div>
                     </div>
                 )
-            }): <div>
-                <h1>Loading...</h1>
-                </div>}
+            }
+        )
+        }
         </div>
+        </div>
+        
     </div>
   )
 }

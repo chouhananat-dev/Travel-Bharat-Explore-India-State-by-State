@@ -1,14 +1,14 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
-export const Logout = () => {
+export const Logout2 = () => {
     const navigate = useNavigate();
     const handleLogoutClick = () =>{
         localStorage.removeItem('token');
-        navigate('/admin/login');
+        navigate('/');
     }
   return (
     <div>
-        <button type='button' className='w-20 border-3 border-r-amber-700 rounded-lg hover:scale-120 duration-200' onClick={handleLogoutClick}>Logout</button>
+        <button type='button' className='text-white' onClick={handleLogoutClick}>Logout</button>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 const Place = require('../models/Place');
-const protect = require('../Middlewares/tokenVerifier');
+const {protect} = require('../Middlewares/tokenVerifier');
 const express = require('express');
 const router = express.Router();
 

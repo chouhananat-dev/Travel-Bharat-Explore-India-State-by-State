@@ -1,11 +1,10 @@
-import {useNavigate} from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 import React from 'react'
 
 export const ProtectedRoutes = ({children}) => {
-    const navigate = useNavigate();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('jwt_token');
     if (!token){
-        navigate('/admin/login');
+        return <Navigate to='/admin/login'/>
     }
     else{
         return children

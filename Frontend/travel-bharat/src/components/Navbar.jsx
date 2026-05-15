@@ -6,7 +6,8 @@ export const Navbar = () => {
   const links={
     'link1':{ text: 'Home', path: '/' },
     'link2':{ text: 'About', path: '/about' },
-    'link3':{ text: 'Contact us', path: '/contact' }
+    'link3':{ text: 'Contact us', path: '/contact' },
+    'link4':{text:'Admin Login', path:'/admin/login'}
   }
   return (
     <div class="flex justify-between items-center p-4 h-10 w-full bg-gray-900 backdrop-blur-sm bg-opacity-30 md:px-20 md:h-16 fixed top-0 z-50">

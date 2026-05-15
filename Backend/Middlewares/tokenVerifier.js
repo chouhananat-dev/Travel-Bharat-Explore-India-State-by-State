@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const protect = (req,res,next)=>{
-    const reqHeader = req.headers.Authoriaztion;
-        if(reqHeader && reqHeader.startWith('Bearer')){
+const protect = async(req,res,next)=>{
+    const reqHeader = req.headers.authorization;
+        if(reqHeader && reqHeader.startsWith('Bearer')){
             try{
             const token = reqHeader.split(' ')[1];
-            await jwt.verify(token,process.env.jwt_token);
+            const decoded=jwt.verify(token,process.env.JWT_SECRET);
             next();
         }
         catch(err){

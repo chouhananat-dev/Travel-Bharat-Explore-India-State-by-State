@@ -11,7 +11,7 @@ const topPlacesRoutes = require('./routes/topPlacesRoutes');
 const login = require('./routes/login');
 const deletePlace = require('./routes/delete')
 app.use(cors());
-
+app.use(express.json());
 // connection to mongodb
 moongose.connect(process.env.MONGO_URI)
     .then(()=>{console.log("Connection successful!")})

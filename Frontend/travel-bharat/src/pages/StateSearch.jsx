@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 export const StateSearch = () => {
     const location = useLocation();
     const {state} = location;
+    const [loading, setloading] = React.useState(true);
     const [State, setState] = React.useState("Uttar Pradesh");
     const [places, setPlaces] = React.useState([]);
     useEffect(()=>{
@@ -16,7 +17,9 @@ export const StateSearch = () => {
             setState(state);
           }
           const response = await axios.get(`http://localhost:5000/api/states/${State}`);
+          setloading(false);
           setPlaces(response.data);
+          setloading(false);
           console.log(response.data);
         }
         catch(err){
@@ -29,6 +32,7 @@ export const StateSearch = () => {
     },[state,State])
     const selectSearch = async(e) => {
       e.preventDefault();
+      setloading(true);
       try{
         const response = await axios.get("http://localhost:5000/api/getStatesInfo",{
           params:{
@@ -37,20 +41,19 @@ export const StateSearch = () => {
           }
         });
         setPlaces(response.data);
+        setloading(false)
       }
       catch(err){
         console.log(err);
       }
-      
-
     }
   return (
-    <div id='main_div' class='bg-gradient-to-r from-[#FF9933] to-[#138808]'>
-      <div id='search_box' class='bg-cover bg-center h-[30rem] flex flex-row items-center justify-center lg:p-40 md:p-8 p-4' style={{backgroundImage:'url("https://res.cloudinary.com/degxzalkz/image/upload/v1776784522/photo-1629735919597-fed920b5bd84_z5esqe.jpg")'}}>
+    <div id='main_div' class='bg-linear-to-r from-[#FF9933] to-[#138808]'>
+      <div id='search_box' class='bg-cover bg-center h-120 flex flex-row items-center justify-center lg:p-40 md:p-8 p-4' style={{backgroundImage:'url("https://res.cloudinary.com/degxzalkz/image/upload/v1776784522/photo-1629735919597-fed920b5bd84_z5esqe.jpg")'}}>
         <Navbar/>
-        <div class='bg-black bg-opacity-50 p-8 rounded-tr-[3rem] rounded-bl-[3rem] text-center h-[20rem] mt-[3rem] w-full flex flex-col items-center justify-center hover:bg-opacity-60 transition duration-300'>
+        <div class='bg-black p-8 rounded-tr-[3rem] rounded-bl-[3rem] text-center h-80 mt-12 w-full flex flex-col items-center justify-center opacity-80 transition duration-300'>
         <form onSubmit={selectSearch} class='flex flex-col items-center justify-center gap-4'> 
-          <select name='statename' class='w-full mb-4 p-2 rounded-lg bg-gray-100 bg-opacity-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 hover:bg-gray-200 transition duration-300 md:w-[28rem] lg:w-[35rem]'>
+          <select name='statename' class='w-full mb-4 p-2 rounded-lg bg-gray-100 bg-opacity-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 hover:bg-gray-200 transition duration-300 md:w-md lg:w-140'>
               <option value=''>Choose States and Union Territories</option>
               <option value='Andhra Pradesh'>Andhra Pradesh</option>
               <option value='Arunachal Pradesh'>Arunachal Pradesh</option>
@@ -90,7 +93,7 @@ export const StateSearch = () => {
               <option value='Lakshadweep'>Lakshadweep</option>
               <option value='Puducherry'>Puducherry</option>
           </select>
-          <select name='category' class='w-full mb-4 p-2 rounded-lg bg-gray-100 bg-opacity-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 hover:bg-gray-200 transition duration-300 md:w-[28rem] lg:w-[35rem]'>
+          <select name='category' class='w-full mb-4 p-2 rounded-lg bg-gray-100 bg-opacity-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 hover:bg-gray-200 transition duration-300 md:w-md lg:w-140'>
             <option value=''>Choose Category</option>
             <option value='pilgrimage'>Pilgrimage</option>
             <option value='heritage'>Heritage</option>
@@ -107,10 +110,10 @@ export const StateSearch = () => {
         </form>
       </div>
       </div>
-      <div class='bg-gradient-to-r from-[#FF9933] to-[#138808]'>
-        {places.map((place) => (
+      <div class='bg-linear-to-r from-[#FF9933] to-[#138808]'>
+        {!loading ? places.map((place) => (
           <div key={place.id} class='bg-cover bg-center flex flex-col items-center justify-center lg:flex-row mt-4' style={{backgroundImage: `url(${place.image})`}}>
-            <div class='w-full h-[20rem] md:h-[25rem] lg:w-1/2screen  overflow-hidden transition duration-300 relative'>
+            <div class='w-full h-80 md:h-100 lg:w-1/2screen  overflow-hidden transition duration-300 relative'>
               <img src={place.image} alt={place.name} class='w-full h-full object-cover hover:scale-110 transition duration-300' />
               <Link to='/states/description' state={place}>
                 <button class='absolute top-[85%] left-[5%] bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 transition duration-300'>
@@ -121,7 +124,7 @@ export const StateSearch = () => {
                 </button>
               </Link>
             </div>
-            <div class='w-full h-auto md:h-auto lg:h-[25rem] p-4 bg-red-800 bg-opacity-75'>
+            <div class='w-full h-auto md:h-auto lg:h-100 p-4 bg-red-800 bg-opacity-75'>
               <h3 class='text-3xl font-bold text-yellow-500'>{place.name}</h3>
               <h3 class='text-xl font-semibold text-gray-300'>{place.state}</h3>
               <p class='text-white text-lg italic font-semibold'>{place.category}</p>
@@ -145,8 +148,53 @@ export const StateSearch = () => {
             </div>
           </div>
         )
-        
-        )
+        ):<div className='flex flex-col space-evenly gap-4  mt-4 pb-4'>
+        <div class="mx-auto mt-4 w-full max-w-sm rounded-md border border-black p-4">
+  <div class="flex animate-pulse space-x-4">
+    <div class="size-20 rounded-full bg-gray-200"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 rounded bg-gray-200"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-2 h-2 rounded bg-gray-200"></div>
+          <div class="col-span-1 h-2 rounded bg-gray-200"></div>
+        </div>
+        <div class="h-2 rounded bg-gray-200"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mx-auto mt-4 w-full max-w-sm rounded-md border border-black p-4">
+  <div class="flex animate-pulse space-x-4">
+    <div class="size-20 rounded-full bg-gray-200"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 rounded bg-gray-200"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-2 h-2 rounded bg-gray-200"></div>
+          <div class="col-span-1 h-2 rounded bg-gray-200"></div>
+        </div>
+        <div class="h-2 rounded bg-gray-200"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mx-auto mt-4  w-full max-w-sm rounded-md border border-black p-4">
+  <div class="flex animate-pulse space-x-4">
+    <div class="size-20 rounded-full bg-gray-200"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 rounded bg-gray-200"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-2 h-2 rounded bg-gray-200"></div>
+          <div class="col-span-1 h-2 rounded bg-gray-200"></div>
+        </div>
+        <div class="h-2 rounded bg-gray-200"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
         }
       </div>
     </div>

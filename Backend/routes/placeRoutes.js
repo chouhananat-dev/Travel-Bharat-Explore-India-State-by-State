@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Place = require('../models/Place');
-const protect = require('../Middlewares/tokenVerifier');
+const {protect} = require('../Middlewares/tokenVerifier');
 
 // imported the model of Place to interact with the database
 
@@ -58,5 +58,33 @@ router.post('/savedata',protect, async(req,res)=>{
     catch(err){
         res.status(400).json(err);
     }
-})
+});
+router.get('/adminUpdate/:objectId',protect, async(req,res)=>{
+    const {objectId}=req.params;
+    try{
+        const place = await Place.findOne({_id:objectId});
+        res.json(place);
+    }
+    catch(err){
+        res.status(500).json(err);
+    }
+});
+
+router.put('/makeUpdate/:objectId',protect, async(req,res)=>{
+    const {objectId} = req.params;
+    const {name, state, category, description, bestTimeToVisit, image, map, keyPoints, nearByAttractions} = req.body;
+    try{
+        const updated = await Place.findByIdAndUpdate(objectId,{},{new:true, runValidators:true});
+        if(!updated){
+            res.status(404).json({message:"object not found!"});
+        }
+        else{
+            res.status(200).json("updated successfully");
+        }
+    }
+    catch(err){
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;

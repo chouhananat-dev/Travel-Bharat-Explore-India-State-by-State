@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 export const AdminDashboard = () => {
   const [formData, setformData] = useState({
     name:'',
@@ -53,6 +54,7 @@ export const AdminDashboard = () => {
   }
   return (
     <div id='admin_main_container'>
+      <Link to='/admin/viewPlaces'><button>View</button></Link>
       <div id='admin_inner_container'>
         <form onSubmit={handleSubmit}>
           <input type='text' name='name' value={formData.name} onChange={handleChange}></input>
