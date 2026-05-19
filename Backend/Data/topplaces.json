@@ -1,0 +1,48 @@
+[{
+  "place": "Qutub Minar",
+  "real_name":"Delhi",
+  "state": "Delhi",
+  "description": "The Qutub Minar, located in Delhi, is the world's tallest brick minaret, standing at 73 meters high. Built by Qutb-ud-din Aibak in 1193 to mark the beginning of Muslim rule, it serves as a victory tower and is a UNESCO World Heritage site. This five-storeyed structure features intricate carvings in red sandstone and marble, showcasing early Indo-Islamic architecture.",
+  "tagline": "The Tower of Triumph—Where History Soars",
+  "image": "https://res.cloudinary.com/degxzalkz/image/upload/f_auto,q_auto,w_800/v1775056910/photo-1716747713381-ebdd06319cdd_vhxnus.jpg"
+},
+{
+  "place": "Gateway of India",
+  "state": "Maharashtra",
+  "real_name":"Mumbai",
+  "description": "The Gateway of India is an iconic 26-meter-high basalt arch monument located on the waterfront at Apollo Bunder in South Mumbai. Completed in 1924, it was built to commemorate the visit of King George V and Queen Mary to India in 1911. Designed in the Indo-Saracenic style, it served as a symbolic ceremonial entrance to India for British Viceroys.",
+  "tagline": "The Majestic Archway: Where History Meets the Sea",
+  "image": "https://res.cloudinary.com/degxzalkz/image/upload/f_auto,q_auto,w_800/v1775056956/photo-1677934125266-2c2941e03e6e_qeydmk.jpg"
+},
+{
+  "place": "Taj Mahal",
+  "state": "Uttar Pradesh",
+  "real_name":"Agra-Fatehpur Sikri",
+  "description": "The Taj Mahal is an ivory-white marble mausoleum located in Agra, India, commissioned in 1632 by Mughal Emperor Shah Jahan for his favorite wife, Mumtaz Mahal. Built over 20 years, it features a central dome, intricate inlay work, and vast gardens, serving as an ultimate monument to love.",
+  "tagline": "A Timeless Teardrop on the Cheek of Time",
+  "image": "https://res.cloudinary.com/degxzalkz/image/upload/f_auto,q_auto,w_800/v1774359907/photo-1548013146-72479768bada_igmlr5.jpg"
+},
+{
+  "place": "Jag Mandir",
+  "state": "Rajasthan",
+  "real_name":"Udaipur",
+  "description": "Jag Mandir, also known as the Lake Garden Palace, is a stunning 17th-century palace built on an island in Udaipur's Lake Pichola. Commissioned by the Maharana of Mewar, it served as a summer retreat and famously provided refuge to Prince Khurram (later Emperor Shah Jahan).",
+  "tagline": "Where Royal Dreams Float on Quiet Waters",
+  "image": "https://res.cloudinary.com/degxzalkz/image/upload/f_auto,q_auto,w_800/v1775057440/photo-1690708186073-17037cd66467_xv5x12.jpg"
+},
+{
+  "place": "Golden Temple",
+  "state": "Punjab",
+  "real_name":"Amritsar",
+  "description": "The Golden Temple, or Sri Harmandir Sahib, located in Amritsar, Punjab, is the pre-eminent spiritual site of Sikhism, revered for its stunning gold-plated architecture and serene ambience. Founded in the 16th century by Guru Ram Das and completed by Guru Arjan, it is built on a lower level to promote humility and features four entrances to symbolize equality for all people, regardless of faith or background.",
+  "tagline": "Where Golden Splendor Meets Eternal Serenity",
+  "image": "https://res.cloudinary.com/degxzalkz/image/upload/f_auto,q_auto,w_800/v1775057517/photo-1517427677506-ade074eb1432_irhwss.jpg"
+},
+{
+  "place": "India Gate",
+  "state": "Delhi",
+  "real_name":"Delhi",
+  "description": "Located in New Delhi, the India Gate is a 42-meter-high national war memorial designed by Sir Edwin Lutyens and inaugurated in 1931. It honours nearly 70,000 Indian soldiers who sacrificed their lives for the British Army during World War I and the Afghan War.",
+  "tagline": "A Timeless Tribute to Eternal Valor",
+  "image": "https://res.cloudinary.com/degxzalkz/image/upload/f_auto,q_auto,w_800/v1774360344/photo-1587474260584-136574528ed5_rirjf3.jpg"
+}]

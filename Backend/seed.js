@@ -44,6 +44,7 @@ async function seedDatabase() {
             name: place.name,
             state: place.state,
             keyPoints: place.keyPoints,
+            category: place.category,
             description: place.description,
             bestTimeToVisit: place.bestTimeToVisit,
             image: place.image,
@@ -61,6 +62,7 @@ async function seedDatabase() {
         const topPlacesTransformed = topPlacesData.map(place => ({
             place: place.place,
             state: place.state,
+            real_name: place.real_name,
             description: place.description,
             tagline: place.tagline,
             image: place.image

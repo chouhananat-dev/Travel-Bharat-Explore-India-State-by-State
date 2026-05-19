@@ -7,7 +7,16 @@ import { Login } from './pages/Login';
 import { ProtectedRoutes } from './components/ProtectedRoutes';
 import { ViewPlacesByAdmin } from './pages/ViewPlacesByAdmin';
 import { AdminUpdate } from './pages/AdminUpdate';
+import {React, useEffect} from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 function App() {
+  useEffect(()=>{
+    AOS.init({
+      duration: 1500,
+      once: true,
+    });
+  },[]);
   return(
     <BrowserRouter>
     <Routes>

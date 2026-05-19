@@ -16,7 +16,7 @@ export const Login = () => {
             }
             localStorage.setItem('jwt_token',token);
             // browser stores the jwt token in the form of key-value pairs
-            navigate('/admin/dashboard');
+            navigate('/admin/viewPlaces');
         }
         catch(err){
             console.log(err);
@@ -25,7 +25,7 @@ export const Login = () => {
     }
   return (
     <div id='login_main_container' className='w-full h-screen flex flex-row items-center justify-center bg-cover bg-center' style={{backgroundImage:"url('https://res.cloudinary.com/degxzalkz/image/upload/v1778774302/photo-1685542872350-8e9a02d867b5_q35ucd.jpg')"}}>
-        <div id='login_form' className='w-130 h-80 bg-orange-200 ml-5 mr-5 opacity-50 rounded-2xl'>
+        <div id='login_form' className='w-130 h-80 bg-orange-200 ml-5 mr-5 opacity-50 rounded-2xl' data-aos='zoom-in' data-aos-delay='200'>
             <form onSubmit={handleSubmit} className='flex flex-col items-center gap-y-10'>
                 <h1 className='text-3xl mt-4'>Admin Login</h1>
                 <input type='text' placeholder='Username' className='text-2xl font-semibold text-center outline-none border-b rounded-2xl' value={username} onChange={(e)=>{setusername(e.target.value)}}></input>

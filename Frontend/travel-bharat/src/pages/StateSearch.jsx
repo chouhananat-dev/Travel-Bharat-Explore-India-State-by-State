@@ -4,32 +4,30 @@ import { useEffect } from 'react';
 import {Navbar} from '../components/Navbar'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Footer } from '../components/Footer';
 export const StateSearch = () => {
     const location = useLocation();
     const {state} = location;
     const [loading, setloading] = React.useState(true);
-    const [State, setState] = React.useState("Uttar Pradesh");
     const [places, setPlaces] = React.useState([]);
     useEffect(()=>{
       const fetchdata = async()=>{
         try{
-          if (state){
-            setState(state);
-          }
-          const response = await axios.get(`http://localhost:5000/api/states/${State}`);
-          setloading(false);
-          setPlaces(response.data);
-          setloading(false);
-          console.log(response.data);
+            const statename = state || 'Uttar Pradesh';
+            const response = await axios.get(`http://localhost:5000/api/states/${statename}`);
+            setloading(false);
+            setPlaces(response.data);
+            setloading(false);
+            console.log(response.data);
         }
         catch(err){
           console.log(err);
         }
       }
-      if (State){
+
         fetchdata();
-      }
-    },[state,State])
+
+    },[state]);
     const selectSearch = async(e) => {
       e.preventDefault();
       setloading(true);
@@ -51,7 +49,7 @@ export const StateSearch = () => {
     <div id='main_div' class='bg-linear-to-r from-[#FF9933] to-[#138808]'>
       <div id='search_box' class='bg-cover bg-center h-120 flex flex-row items-center justify-center lg:p-40 md:p-8 p-4' style={{backgroundImage:'url("https://res.cloudinary.com/degxzalkz/image/upload/v1776784522/photo-1629735919597-fed920b5bd84_z5esqe.jpg")'}}>
         <Navbar/>
-        <div class='bg-black p-8 rounded-tr-[3rem] rounded-bl-[3rem] text-center h-80 mt-12 w-full flex flex-col items-center justify-center opacity-80 transition duration-300'>
+        <div class=' p-8 rounded-tr-[3rem] rounded-bl-[3rem] text-center h-80 mt-12 w-full flex flex-col items-center justify-center opacity-80 transition duration-300'>
         <form onSubmit={selectSearch} class='flex flex-col items-center justify-center gap-4'> 
           <select name='statename' class='w-full mb-4 p-2 rounded-lg bg-gray-100 bg-opacity-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 hover:bg-gray-200 transition duration-300 md:w-md lg:w-140'>
               <option value=''>Choose States and Union Territories</option>
@@ -112,7 +110,7 @@ export const StateSearch = () => {
       </div>
       <div class='bg-linear-to-r from-[#FF9933] to-[#138808]'>
         {!loading ? places.map((place) => (
-          <div key={place.id} class='bg-cover bg-center flex flex-col items-center justify-center lg:flex-row mt-4' style={{backgroundImage: `url(${place.image})`}}>
+          <div key={place.id} class='bg-cover bg-center flex flex-col items-center justify-center lg:flex-row mt-4' style={{backgroundImage: `url(${place.image})`}}  data-aos='fade-up' data-aos-delay='200'>
             <div class='w-full h-80 md:h-100 lg:w-1/2screen  overflow-hidden transition duration-300 relative'>
               <img src={place.image} alt={place.name} class='w-full h-full object-cover hover:scale-110 transition duration-300' />
               <Link to='/states/description' state={place}>
@@ -148,7 +146,7 @@ export const StateSearch = () => {
             </div>
           </div>
         )
-        ):<div className='flex flex-col space-evenly gap-4  mt-4 pb-4'>
+        ):<div className='flex flex-col gap-4  mt-4 pb-4'>
         <div class="mx-auto mt-4 w-full max-w-sm rounded-md border border-black p-4">
   <div class="flex animate-pulse space-x-4">
     <div class="size-20 rounded-full bg-gray-200"></div>
@@ -197,6 +195,7 @@ export const StateSearch = () => {
 </div>
         }
       </div>
+      <Footer/>
     </div>
   )
 }

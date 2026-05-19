@@ -8,7 +8,7 @@ export const Logout2 = () => {
     }
   return (
     <div>
-        <button type='button' className='text-white' onClick={handleLogoutClick}>Logout</button>
+        <button type='button'  className='text-white text-center hover:underline' onClick={handleLogoutClick}>Home</button>
     </div>
   )
 }

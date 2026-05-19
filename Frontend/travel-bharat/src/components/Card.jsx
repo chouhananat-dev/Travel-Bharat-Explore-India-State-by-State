@@ -70,12 +70,12 @@ export const Card = () => {
 </div>
     }
     return (
-        <div class='p-4 md:p-10 lg:p-20 h-[120vh] bg-cover bg-center flex items-center justify-center' style={{ backgroundImage: "url('https://res.cloudinary.com/degxzalkz/image/upload/v1775909241/photo-1690313186501-445a6367d7e7_hss5rp.jpg')" }}>
-            <div class='w-full lg:h-full h-[83vh] md:h-[90vh] bg-black bg-opacity-50 rounded-lg p-6 text-center'>
+        <div class='md:p-10 lg:p-20 bg-cover bg-center flex items-center justify-center' style={{ backgroundImage: "url('https://res.cloudinary.com/degxzalkz/image/upload/v1775909241/photo-1690313186501-445a6367d7e7_hss5rp.jpg')" }}>
+            <div class='w-full lg:h-full h-[83vh] md:h-[90vh] bg-black/50 rounded-lg p-4 text-center'>
             <h1 class='lg:text-[5rem] text-3xl md:text-[2.5rem] font-bold text-yellow-500 mb-6 mt-4'>Explore the states of India</h1>
             <div class='w-full h-auto overflow-x-scroll overflow-y-hidden flex gap-6 py-4'>
                 {data.data.map((state)=>(
-                        <div key={state._id} class='bg-white rounded-2xl shadow-md h-[60vh] w-96 md:w-100 md:h-[75vh] shrink-0 overflow-hidden relative'>
+                        <div key={state._id} class='bg-white rounded-2xl shadow-md h-[60vh] w-96 md:w-100 md:h-[75vh] shrink-0 overflow-hidden relative' data-aos='zoom-in' data-aos-delay='200'>
                             <img src={state.image} alt={state.name} class='w-full h-[60vh] md:h-[75vh] object-cover rounded-2xl hover:scale-110 transition duration-300'/>
                             <div class='p-2 backdrop-blur-sm bg-gray-100 bg-opacity-50 rounded-lg mt-[-20vh] mx-6'>
                                 <h2 class='text-xl font-bold text-gray-800 mb-2'>{state.name}</h2>

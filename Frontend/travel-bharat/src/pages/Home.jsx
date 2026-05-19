@@ -4,6 +4,7 @@ import { Card } from '../components/Card';
 import { Topplaces } from '../components/Topplaces';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Footer } from '../components/Footer';
 export const Home = () => {
   const [search, setsearch] = useState(false)
   return (
@@ -16,8 +17,8 @@ export const Home = () => {
       <div class='absolute top-[-21rem] w-full h-full  flex flex-col items-center justify-center'>
       <Navbar/>
       <div class='flex lg:flex-row '>
-      <div class='mt-[17rem] ml-[-13rem] text-4xl font-bold text-white md:text-3xl gap-2 md:gap-4 lg:gap-6 lg:ml-[-40rem] lg:mt-[60rem] flex flex-col lg:mt-[15rem] md:ml-[-24rem] md:mt-[36rem] text-left'>
-        <h1 class='text-3xl md:text-5xl'>Explore</h1>
+      <div class='mt-[17rem] ml-[-13rem] text-4xl font-bold text-white md:text-3xl gap-2 md:gap-4 lg:gap-6 lg:ml-[-40rem] lg:mt-[60rem] flex flex-col lg:mt-[15rem] md:ml-[-24rem] md:mt-[36rem] text-left' data-aos='fade-up'>
+        <h1 class='text-3xl md:text-5xl' data-aos='fade-up'>Explore</h1>
         <h1 class='md:text-5xl lg:text-[6rem] text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#FF9933] via-white to-[#138808]'>India</h1>
         <h1 class='text-3xl md:text-5xl text-white'>state by state</h1>
       </div>
@@ -41,8 +42,8 @@ export const Home = () => {
       <Topplaces/>
       <Card/>
       
-      <div class='pt-12 pb-20 bg-linear-to-r from-[#FF9933] to-[#138808]'>
-        <h1 class='text-[5rem] mb-8 font-bold text-white text-center'>More Attractions</h1>
+      <div class='pb-5 bg-linear-to-r from-[#FF9933] to-[#138808]'>
+        <h1 class='text-4xl md:text-6xl lg:text-[5rem] mb-4 pt-4 font-bold text-white text-center'>More Attractions</h1>
       <div class='h-[23rem] flex flex-col justify-center items-center bg-[url("https://res.cloudinary.com/degxzalkz/image/upload/v1775576053/1000_F_505512599_D6ulJI9hV6aGTP04FPC2XDk5QHGOQtpW_waps52.jpg")] bg-cover bg-center'>
         <h1 class='text-4xl font-bold text-white italic mb-4'>"India is incredible! Click here to explore more."</h1>
         <Link to='/states'>
@@ -54,7 +55,9 @@ export const Home = () => {
         </Link>
       </div>
       </div>
+      <Footer/>
     </div>
+      
     </div>
   )
 }

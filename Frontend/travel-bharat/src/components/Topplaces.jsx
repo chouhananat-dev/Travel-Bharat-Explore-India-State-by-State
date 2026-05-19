@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 export const Topplaces = () => {
     const [data, setdata] = useState(null)
+    const navigate = useNavigate();
     const [loading, setloading] = useState(false)
     useEffect(()=>{
         const fetchdata = async()=>{
@@ -16,7 +18,22 @@ export const Topplaces = () => {
             }
         }
         fetchdata()
-    },[])
+    },[]);
+    const handleClick = async(real_name, state) =>{
+  
+      try{
+        const response = await axios.get('http://localhost:5000/api/topPlacesInfo', {
+          params: { real_name, state}
+        });
+        const data = response.data;
+        navigate('/states/description', {
+          state: data
+        });
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
     if(!loading){
         return <div className='flex flex-row space-evenly gap-4 flex-wrap-reverse'>
         <div class="mx-auto mt-4 w-full max-w-sm rounded-md border border-black p-4">
@@ -71,13 +88,13 @@ export const Topplaces = () => {
         <h1 class='lg:text-[5rem] text-3xl md:text-[2.5rem] text-center font-bold text-white mb-6 mt-4'>Top Places to Visit in India</h1>
         <div class='w-full flex flex-col'>
             {data.data.map((place)=>(
-                <div key={place.id} class='flex md:flex-row  flex-col justify-between items-center w-full h-auto relative bg-cover bg-center mt-4 mb-4' style={{backgroundImage:`url(${place.image})`}}>
+                <div key={place.id} class='flex md:flex-row  flex-col justify-between items-center w-full h-auto relative bg-cover bg-center mt-4 mb-4' style={{backgroundImage:`url(${place.image})`}} data-aos='fade-up' data-aos-delay='200'>
                     <div class='bg-white shadow-md h-96 w-[100%] md:w-96 flex-shrink-0 overflow-hidden relative lg:h-[100vh] lg:w-[120vh] overflow-hidden'>
                         <img src={place.image} alt={place.name} class='w-[100%] md:w-96 h-96 object-cover hover:scale-110 transition duration-300 lg:w-[120vh] lg:h-[100vh] '/>
                     </div>
                     
-                        <div class='absolute top-80 lg:top-[560px] left-1/2 transform -translate-x-1/2 lg:left-[50px] lg:transform-none md:top-[310px] md:left-[45px] md:transform-none'>
-                            <button class='bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 transition duration-300 h-12 w-32 flex items-center justify-center'>
+                        <div class='absolute top-80 lg:top-140  lg:left-12 lg:transform-none md:top-77.5 md:left-12 md:transform-none'>
+                            <button class='bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 transition duration-300 h-12 w-32 flex items-center justify-center' onClick={(e)=>{e.preventDefault(); handleClick(place.real_name, place.state)}}>
                                 Explore
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block ml-2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
